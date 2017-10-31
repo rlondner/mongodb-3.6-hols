@@ -1,4 +1,4 @@
-# Part 1: Getting started with Strict Document Validation
+# Part 1: Getting started with Schema Validation
 
 1. Install MongoDB 3.6 as specified in [Pre-requisites section](./../README.md)
 1. In the Terminal/Command Prompt window running `mongo`, enter the following command:
