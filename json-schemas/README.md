@@ -11,4 +11,4 @@ As of MongoDB 3.2, [Document Validation](https://docs.mongodb.com/manual/core/do
 The following labs are currently available:
 
 * [Getting Started with Schema Validation](./HOL-PART1.md)
-* Part 2 (TBC)
+* [Digging deeper into Schema Validation: sub-documents and additional fields restrictions](./HOL-PART2.md)
