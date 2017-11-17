@@ -162,8 +162,8 @@ Let's test the new schema validation rule to make sure it complies with our inte
             }
         }
         )
-    
-	By setting `additionalProperties` to `false`, we were able to enforce that the `f` sub-document only contains the properties specified in its `properties` section. By specifying these properties as required (using the `required` keyword), we make sure that these properties and __only they__ are always present in new or updated documents (provided the `validationLevel` is set to `strict`, which is the default value).Now the following command no longer works because `f.a` is the only allowed property in the `f` sub-document:
+
+    By setting `additionalProperties` to `false`, we were able to enforce that the `f` sub-document only contains the properties specified in its `properties` section. By specifying these properties as required (using the `required` keyword), we make sure that these properties and __only they__ are always present in new or updated documents (provided the `validationLevel` is set to `strict`, which is the default value).Now the following command no longer works because `f.a` is the only allowed property in the `f` sub-document:
 
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:{a:NumberInt(1), b:"1"}})
 
@@ -205,8 +205,11 @@ Let's test the new schema validation rule to make sure it complies with our inte
             }
         }
         )
+
     With the schema above, the following insert works:
-        db.testCol.insertOne({b:"test",d:"9",c:1})
+
+          db.testCol.insertOne({b:"test",d:"9",c:1})
+
 1. As an exercise, let’s add a few more fields (`g`, `h` and `i`) and constraints:
 
         db.testCol.drop()
@@ -279,7 +282,8 @@ Let's test the new schema validation rule to make sure it complies with our inte
             }
         }
         )
-Now, it’s up to you to figure out which of the following queries work. Good luck!
+
+    Now, it’s up to you to figure out which of the following queries work. Good luck!
 
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:{a:NumberInt(1)}, g:1})
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:{a:NumberInt(1)}, g:{a:1}})

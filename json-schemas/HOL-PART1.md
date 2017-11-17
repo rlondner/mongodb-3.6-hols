@@ -3,6 +3,8 @@
 1. Install MongoDB 3.6 as specified in [Pre-requisites section](./../README.md)
 1. In the Terminal/Command Prompt window running `mongo`, enter the following command:
 
+        use demo
+        db.adminCommand( {setFeatureCompatibilityVersion: "3.6"}) //necessary only if you use a pre-3.6 version of the Mongo Shell
         db.testCol.drop()
         db.createCollection( "testCol",
         {
@@ -35,7 +37,7 @@
                     }
                 }
             }
-        }
+        })
     This creates a `testCol` collection requiring that any document inserted or updated in the `testCol` collection complies with the following constraints:
 
     * `b`, `c` and `d` are required fields
