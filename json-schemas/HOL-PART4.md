@@ -65,6 +65,11 @@ db.students.insertOne({name: "Andrei Popov",
 mailing_address: "456 Oak Street"}) // works, having an address without graduation is fine, dependencies are not bidirectional
 ```
 
+Note: If we set `graduated: false`, from a schema validation standpoint
+`mailing_address` would still be required and would, therefore, be up the
+application to not set a `graduated` attribute unless that condition is
+indeed true.
+
 3. To make the dependencies bidirectional we would define them explicitly:
 
 ```
