@@ -2,7 +2,12 @@
 
 With our newly learned knowledge of validation for sub-documents, let's
 go a step further and look at how to validate another feature of
-MongoDB's JSON Schema: arrays.
+MongoDB's JSON Schema: [arrays](https://tools.ietf.org/html/draft-fge-json-schema-validation-00#page-9).
+
+We can use the bsonType of `array`, and the associated `items` property
+to define what our array looks like. `items` **must** either be an object
+or an array. Objects must be valid JSON Schema and arrays **must** be
+objects with valid JSON Schema.
 
 Our use case here will be the modeling of a cooking recipe. Typically a
 recipe will have a list of ingredients. In a `recipe` collection then,
