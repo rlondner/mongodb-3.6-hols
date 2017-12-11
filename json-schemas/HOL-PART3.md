@@ -124,7 +124,7 @@ db.createCollection ( "crayons",
                     bsonType: ["object"],
                     required: ["size", "color"],
                     additionalProperties: false,
-                    description: "'ingredients' must contain the stated fields.",
+                    description: "'crayons' must contain the stated fields.",
                     properties: {
                         size: {
                           enum: ["small", "medium", "large"],
