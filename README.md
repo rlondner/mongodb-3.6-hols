@@ -10,7 +10,7 @@ This repository contains hands-on labs for the following new features in MongoDB
 
 For all the hands-on labs available in this repository, you will need to take the following steps to install the latest version of MongoDB 3.6 on your machine:
 
-Download the latest version of MongoDB 3.6 from the [Download Center](https://www.mongodb.com/download-center#community). At the time of this writing, this latest version is the Release Candidate 1, available in the Development Releases section.
+Download the latest version of MongoDB 3.6 from the [Download Center](https://www.mongodb.com/download-center#community).
 
 1. Create a `data` folder in your MongoDB 3.6 root folder.
 
