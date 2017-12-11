@@ -3,7 +3,7 @@
 This repository contains hands-on labs for the following new features in MongoDB 3.6:
 
 * Change Streams
-* [Strict Document Validation](./json-schemas) (aka JSON Schema support)
+* [JSON Schema Validation](./json-schemas)
 * Aggregation Framework improvements
 
 ## Pre-requisites
