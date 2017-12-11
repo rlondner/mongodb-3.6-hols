@@ -3,6 +3,7 @@
 1. Install MongoDB 3.6 as specified in [Pre-requisites section](./../README.md)
 1. In the Terminal/Command Prompt window running `mongo`, enter the following command:
 
+    ```javascript
         use demo
         db.adminCommand( {setFeatureCompatibilityVersion: "3.6"}) //necessary only if you use a pre-3.6 version of the Mongo Shell
         db.testCol.drop()
@@ -38,6 +39,8 @@
                 }
             }
         })
+    ```
+
     This creates a `testCol` collection requiring that any document inserted or updated in the `testCol` collection complies with the following constraints:
 
     * `b`, `c` and `d` are required fields
@@ -47,6 +50,7 @@
 
 1. Enter the following commands to test schema validation:
 
+    ```javascript
         db.testCol.insertOne({b:"test",d:"99",c:1}) //works since b is a string, c is a double (in JavaScript) and d is a string that matches the digit pattern
 
         db.testCol.insertOne({b:"test",d:99,c:1}) //doesn't work, since 99 is considered a double in JavaScript (and d must be an Int32 or a string matching the `\d` pattern)
@@ -62,9 +66,11 @@
         db.testCol.insertOne({b:"test",d:NumberInt(0),c:1}) //works because 0 is a valid d value
 
         db.testCol.insertOne({b:"test",d:NumberInt(-1),c:1}) //doesn't work because d cannot be negative
+    ```
 
 1. Let's add an additional `e` field and constraint (e can only be equal to 43 or "mongodb") by running the following command:
 
+    ```javascript
         db.testCol.drop()
         db.createCollection( "testCol",
         {
@@ -104,11 +110,14 @@
             }
         }
         )
+    ```
 
-Run the following command to test the new JSON schema:
+    Run the following command to test the new JSON schema:
 
+    ```javascript
         db.testCol.insertOne({b:"test",d:9,c:1, e:42}) //works because 42 is a valid value for `e`
 
         db.testCol.insertOne({b:"test",d:9,c:1, e:"mongodb"}) //works because "mongodb" is a valid value for `e`
 
         db.testCol.insertOne({b:"test",d:9,c:1, e:43}) //doesn't work because 43 is not a valid value for `e`
+    ```

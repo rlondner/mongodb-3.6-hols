@@ -10,9 +10,9 @@ As of MongoDB 3.2, [Document Validation](https://docs.mongodb.com/manual/core/do
 
 The following labs are currently available:
 
-* [Getting Started with Schema Validation](./HOL-PART1.md)
-* [Digging deeper into Schema Validation: sub-documents and additional fields restrictions](./HOL-PART2.md)
-* [Advanced topic: array validation](./HOL-PART3.md)
-* [Expert topic: schema dependencies](./HOL-PART4.md)
+* [(Part 1) Getting Started with Schema Validation](./HOL-PART1.md)
+* [(Part 2) Digging deeper into Schema Validation: sub-documents and additional fields restrictions](./HOL-PART2.md)
+* [(Part 3) Advanced topic: array validation](./HOL-PART3.md)
+* [(Part 4) Expert topic: property and schema dependencies](./HOL-PART4.md)
 
-Part 3 and 4 of this hands-on lab are available thanks to [Ken W. Alger](https://github.com/kenwalger) contribution.
+Part 3 and 4 of this hands-on lab are available thanks to [Ken W. Alger's](https://github.com/kenwalger) contributions.
