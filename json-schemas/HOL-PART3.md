@@ -68,7 +68,7 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
     {quantity: 7, measurement: "ounce", ingredient_name: "bittersweet chocolate", format: "chopped"},
     {quantity: 2, measurement: "cup", ingredient_name: "heavy cream"}
     ]})  // works
-    db.recipes.insertOne({name: "Cheese Omlet", ingredients: [
+    db.recipes.insertOne({name: "Cheese Omelet", ingredients: [
     {quantity: .25, measurement: "cup", ingredient_name: "cheddar cheese", format: "shredded"},
     {quantity: 2, ingredient_name: "eggs"}
     ]})  // doesn't work because eggs is missing a measurement
@@ -127,7 +127,6 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
         }
         }
     })
-
     ```
 
 1. We have set our validation rule here so that each box of crayons cannot contain identical crayons (i.e. of the same size and color).
