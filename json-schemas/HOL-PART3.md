@@ -139,7 +139,7 @@ Let's assume that for each ingredient listed we need a *quantity*,
 
     ```
 
-1. We have set our validation rule here so that each box of crayons must contain unique colors.
+1. We have set our validation rule here so that each box of crayons cannot contain identical crayons.
 
     ```javascript
     db.crayons.insertOne({name: "Primary Colors", box_size: 3,
@@ -156,5 +156,5 @@ Let's assume that for each ingredient listed we need a *quantity*,
             {size: "small", color: "scarlet"},
             {size: "small", color: "brick red"},
             {size: "small", color: "red"}
-    ]}) // doesn't work, there are two small red crayons in     this box
+    ]}) // doesn't work, there are two small red crayons in this box
     ```
