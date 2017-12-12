@@ -16,7 +16,7 @@ Let's assume that for each ingredient listed we need a *quantity*,
 *measurement*, *ingredient*, and an optional *format*.
 
 1. Let's define a *basic* recipe skeleton:
-```
+```javascript
     db.recipes.drop()
     db.createCollection ( "recipes",
     {
@@ -73,7 +73,7 @@ Let's assume that for each ingredient listed we need a *quantity*,
 document to have a name and at least one ingredient. We've further
 defined what an **ingredient** looks like. Let's test our new rules:
 
-```
+```javascript
 db.recipes.insertOne({name: "Chocolate Ganache", ingredients: [
 {quantity: 7, measurement: "ounce", ingredient: "bittersweet chocolate", format: "chopped"},
 {quantity: 2, measurement: "cup", ingredient: "heavy cream"}
@@ -94,7 +94,7 @@ company which sells boxes of crayons. You want to make sure that each
 box of crayons includes different colors. How exciting would it be for
 young Martina to only get a box of *gray* crayons?
 
-```
+```javascript
 db.crayons.drop()
 db.createCollection ( "crayons",
 {
@@ -103,7 +103,7 @@ db.createCollection ( "crayons",
         $jsonSchema:
       {
         bsonType: "object",
-        required: ["name", "box_size", "crayons"],
+        required: ["name", "crayons"],
         properties:
         {
             _id: {},
@@ -111,57 +111,47 @@ db.createCollection ( "crayons",
                 bsonType: ["string"],
                 description: "'name' is a required string"
             },
-            box_size: {
-                enum: [3, 6, 12, 24, 64, 128],
-                description: "'box_size' must be one of the values listed and is required"
-            },
             crayons: {
-                bsonType: ["array"],
-                minItems: 1, // each box of crayons must have at least one color
-                uniqueItems: true,
+                bsonType: ["object"],
+                required: ["size", "colors"],
                 additionalProperties: false,
-                items: {
-                    bsonType: ["object"],
-                    required: ["size", "color"],
-                    additionalProperties: false,
-                    description: "'crayons' must contain the stated fields.",
-                    properties: {
-                        size: {
+                properties: {
+                    size: {
                           enum: ["small", "medium", "large"],
                           description: "'size' is required and can only be one of the given enum values"
-                                },
-                        color: {
-                          bsonType: "string",
-                          description: "'color' is an optional field of type string"
-                                }
+                        },
+                    colors: {
+                          bsonType: ["array"],
+                          minItems: 1, // each box of crayons must have at least one color
+                          uniqueItems: true,
+                          items: {
+                                bsonType: "string",
+                                description: "'colors' is a required array of unique strings"
+                                 }
+                         }
                     }
                 }
             }
         }
       }
     }
-})
+)
+
+
 
 ```
 
 4. We have set our validation rule here so that each box of crayons must
 contain unique colors.
 
-```
-db.crayons.insertOne({name: "Primary Colors", box_size: 3,
-crayons: [
-        {size: "small", color: "red"},
-        {size: "small", color: "yellow"},
-        {size: "small", color: "blue"}]}) // works
+```javascript
+db.crayons.insertOne({name: "Reds",
+crayons: {size: "small", colors: ["red", "maroon"]}}) // works
 
-db.crayons.insertOne({name: "Reds", box_size: 6,
-crayons: [
-        {size: "small", color: "red"},
-        {size: "medium", color: "red"},
-        {size: "large", color: "red"},
-        {size: "small", color: "scarlet"},
-        {size: "small", color: "brick red"},
-        {size: "small", color: "red"}
-]}) // doesn't work, there are two small red crayons in this box
+db.crayons.insertOne({name: "Reds",
+crayons: {size: "small", colors: ["red", "maroon", "scarlet", "brick red", "red"]}})  // doesn't work since "red" is repeated
 ```
 
+#### Note:
+`uniqueItems` should be used for scalar arrays and **not** for
+item arrays.

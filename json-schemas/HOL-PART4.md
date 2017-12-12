@@ -17,7 +17,7 @@ property is present.
 students and if they have graduated from a program. If they have graduated
 we want to be able to stay in touch with them and need their mailing address.
 
-```
+```javascript
 db.students.drop()
 db.createCollection ( "students",
 {
@@ -51,7 +51,7 @@ db.createCollection ( "students",
 })
 ```
 2. We can test our schema validation rules:
-```
+```javascript
 db.students.insertOne({name: "Alena Weber",
 graduated: true,
 mailing_address: "123 Main Street"}) // works
@@ -72,7 +72,7 @@ indeed true.
 
 3. To make the dependencies bidirectional we would define them explicitly:
 
-```
+```javascript
 db.students.drop()
 db.createCollection ( "students",
 {
@@ -107,7 +107,8 @@ db.createCollection ( "students",
 })
 ```
 4. Neither of the following would pass validation:
-```db.students.insertOne({name: "Chris T. Barker",
+```javascript
+db.students.insertOne({name: "Chris T. Barker",
 graduated: true}) // doesn't work, it has 'graduated', but is missing 'mailing_address'
 
 db.students.insertOne({name: "Courtney DeSaja",
@@ -121,7 +122,7 @@ mailing_address: "789 Broadway"})  // doesn't work, it has 'mailing_address', bu
 Using the *schema dependency* technique, the example from **1.** above
 can be rewritten as follows:
 
-```
+```javascript
 db.students.drop()
 db.createCollection ( "students",
 {
@@ -158,7 +159,7 @@ db.createCollection ( "students",
 })
 ```
 2. Run the following commands to test the new JSON schema:
-```
+```javascript
 db.students.insertOne({name: "Alena Weber",
 graduated: true,
 mailing_address: "123 Main Street"}) // works
