@@ -94,11 +94,10 @@
                         d:
                         {
                           bsonType: ["int", "double"],
-                          pattern: "\d",
                           minimum: 0,
                           maximum: 100,
                           exclusiveMaximum: true,
-                          description: "'d' is a string that matches pattern, or a number in [0, 100) and is required"
+                          description: "'d' is an integer or double in [0, 100) and is required"
                         }
                         ,
                         e: {

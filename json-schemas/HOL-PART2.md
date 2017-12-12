@@ -28,11 +28,10 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
                         d:
                         {
                         bsonType: ["int", "double"],
-                        pattern: "\d",
                         minimum: 0,
                         maximum: 100,
                         exclusiveMaximum: true,
-                          description: "'d' is a string that matches pattern, or a number in [0, 100) and is required"
+                          description: "'d' is an integer or a double in [0, 100) and is required"
                           }
                 ,
                 e: {
@@ -87,11 +86,10 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
                         d:
                         {
                           bsonType: ["int", "double"],
-                          pattern: "\d",
                           minimum: 0,
                           maximum: 100,
                           exclusiveMaximum: true,
-                          description: "'d' is a string that matches pattern, or a number in [0, 100) and is required"
+                          description: "'d' is an integer or a double in [0, 100) and is required"
                         }
                         ,
                         e: {
@@ -146,11 +144,10 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
                         d:
                         {
                           bsonType: ["int", "double"],
-                          pattern: "\d",
                           minimum: 0,
                           maximum: 100,
                           exclusiveMaximum: true,
-                          description: "'d' is a string that matches pattern, or a number in [0, 100) and is required"
+                          description: "'d' is a integer or a double in [0, 100) and is required"
                         }
                         ,
                         e: {
@@ -164,7 +161,7 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
                             a: {bsonType: "int"}
                           },
                           additionalProperties:false,
-                          description: "'f' is an object with only an 'a' int field" 
+                          description: "'f' is an object with only an 'a' int field"
                         }
                     }
                 }
@@ -201,7 +198,7 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
                           bsonType: ["double", "decimal"],
                           description: "'c' must be a double or a decimal and is required"
                         },
-                        d: 
+                        d:
                         {
                           bsonType: ["int", "string"],
                           pattern: "\\d",
@@ -247,11 +244,10 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
                         d:
                         {
                           bsonType: ["int", "double"],
-                          pattern: "\d",
                           minimum: 0,
                         maximum: 100,
                           exclusiveMaximum: true,
-                          description: "'d' is a string that matches pattern, or a number in [0, 100) and is required"
+                          description: "'d' is an interger or a double in [0, 100) and is required"
                         }
                         ,
                         e: {
