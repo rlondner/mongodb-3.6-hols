@@ -95,8 +95,8 @@ box of crayons includes different colors. How exciting would it be for
 young Martina to only get a box of *gray* crayons?
 
 ```javascript
-db.crayons.drop()
-db.createCollection ( "crayons",
+db.crayonBoxes.drop()
+db.createCollection ( "crayonBoxes",
 {
     validator:
     {
