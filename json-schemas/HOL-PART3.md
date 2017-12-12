@@ -1,19 +1,10 @@
 # Part 3: Array Validation
 
-With our newly learned knowledge of validation for sub-documents, let's
-go a step further and look at how to validate another feature of
-MongoDB's JSON Schema: [arrays](https://tools.ietf.org/html/draft-fge-json-schema-validation-00#page-9).
+With our newly learned knowledge of validation for sub-documents, let's go a step further and look at how to validate another feature of MongoDB's JSON Schema Validation support: [arrays](https://tools.ietf.org/html/draft-fge-json-schema-validation-00#page-9).
 
-We can use the bsonType of `array`, and the associated `items` property
-to define what our array looks like. `items` **must** either be an object
-or an array. Objects must be valid JSON Schema and arrays **must** be
-objects with valid JSON Schema.
+We can use the `array` type (or bsonType), and the associated `items` property to define what our array looks like. `items` **must** either be an object or an array. Objects must be valid JSON Schema definitions and arrays **must** be objects with valid JSON schemas.
 
-Our use case here will be the modeling of a cooking recipe. Typically a
-recipe will have a list of ingredients. In a `recipe` collection then,
-our documents would have, among other things, an array of ingredients.
-Let's assume that for each ingredient listed we need a *quantity*,
-*measurement*, *ingredient*, and an optional *format*.
+Our use case here will be the modeling of a cooking recipe. Typically, a recipe will have a list of ingredients. In a `recipes` collection then, our documents would have, among other things, an array of ingredients. Let's assume that for each ingredient listed we need a *quantity*, *measurement*, *ingredient*, and an optional *format*.
 
 1. Let's define a *basic* recipe skeleton:
 
@@ -39,25 +30,25 @@ Let's assume that for each ingredient listed we need a *quantity*,
                     minItems: 1, // each recipe must have at least one ingredient
                     items: {
                         bsonType: ["object"],
-                        required: ["quantity", "measurement", "ingredient"],
+                        required: ["quantity", "measurement", "ingredient_name"],
                         additionalProperties: false,
-                        description: "'ingredients' must contain the stated fields.",
+                        description: "'ingredients' must contain the stated fields",
                         properties: {
-                        quantity: {
-                        bsonType: ["double", "decimal"],
-                        description: "'quantity' is required and is of double or decimal type"
+                            quantity: {
+                            bsonType: ["double", "decimal"],
+                            description: "'quantity' is required and is of double or decimal type"
                                 },
                         measurement: {
-                        enum: ["tsp", "Tbsp", "cup", "ounce", "pound",  "each"],
-                        description: "'measure' is required and can only be one of the given enum values"
+                            enum: ["tsp", "Tbsp", "cup", "ounce", "pound",  "each"],
+                            description: "'measurement' is required and can only be one of the given enum values"
                                 },
-                        ingredient: {
-                        bsonType: "string",
-                        description: "'ingredient_name' is required and is a string"
+                        ingredient_name: {
+                            bsonType: "string",
+                            description: "'ingredient_name' is required and is a string"
                                 },
                         format: {
-                        bsonType: "string",
-                        description: "'format' is an optional field of type string"
+                            bsonType: "string",
+                            description: "'format' is an optional field of type string"
                                 }
                         }
                     }
@@ -74,8 +65,8 @@ Let's assume that for each ingredient listed we need a *quantity*,
 
     ```javascript
     db.recipes.insertOne({name: "Chocolate Ganache", ingredients: [
-    {quantity: 7, measurement: "ounce", ingredient: "bittersweet chocolate", format: "chopped"},
-    {quantity: 2, measurement: "cup", ingredient: "heavy cream"}
+    {quantity: 7, measurement: "ounce", ingredient_name: "bittersweet chocolate", format: "chopped"},
+    {quantity: 2, measurement: "cup", ingredient_name: "heavy cream"}
     ]})  // works
     db.recipes.insertOne({name: "Cheese Omlet", ingredients: [
     {quantity: .25, measurement: "cup", ingredient_name: "cheddar cheese", format: "shredded"},

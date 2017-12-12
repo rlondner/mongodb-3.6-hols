@@ -1,6 +1,6 @@
 # Part 1: Getting started with Schema Validation
 
-1. Install MongoDB 3.6 as specified in [Pre-requisites section](./../README.md)
+1. Install MongoDB 3.6 as specified in [Pre-requisites section](./../README.md).
 1. In the Terminal/Command Prompt window running `mongo`, enter the following command:
 
     ```javascript
@@ -26,7 +26,7 @@
                           bsonType: ["double", "decimal"],
                           description: "'c' must be a double or a decimal and is required"
                         },
-                        d: 
+                        d:
                         {
                           bsonType: ["int", "string"],
                           pattern: "\\d",
@@ -46,7 +46,7 @@
     * `b`, `c` and `d` are required fields
     * `b` must be a string and is required
     * `c` must be a double or a decimal and is required
-    * `d` is a string that matches pattern, or a number in [0, 100) and is required
+    * `d` is a string that matches pattern, or a number in [0, 100[ and is required
 
 1. Enter the following commands to test schema validation:
 
@@ -119,5 +119,5 @@
 
         db.testCol.insertOne({b:"test",d:9,c:1, e:"mongodb"}) //works because "mongodb" is a valid value for `e`
 
-        db.testCol.insertOne({b:"test",d:9,c:1, e:43}) //doesn't work because 43 is not a valid value for `e`
+        db.testCol.insertOne({b:"test",d:9,c:1, e:43}) //doesn't work because 43 is an invalid value for `e`
     ```

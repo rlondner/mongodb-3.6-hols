@@ -11,7 +11,7 @@ come in two forms:
 
 ## Property Dependencies
 
-1. For the case of property dependencies let's suppose our schema represents students and if they have graduated from a program. If they have graduated we want to be able to stay in touch with them and need their mailing address.
+1. For the case of property dependencies, let's suppose our schema represents students and whether they have graduated from a program or not. If they have graduated, we want to be able to stay in touch with them and need their mailing address.
 
     ```javascript
     db.students.drop()
@@ -62,12 +62,9 @@ come in two forms:
     mailing_address: "456 Oak Street"}) // works, having an address without graduation is fine, dependencies are not bidirectional
     ```
 
-Note: If we set `graduated: false`, from a schema validation standpoint
-`mailing_address` would still be required and would, therefore, be up the
-application to not set a `graduated` attribute unless that condition is
-indeed true.
+Note: If we set `graduated: false`, `mailing_address` would still be required from a schema validation standpoint and it would, therefore, be up to the application to not set a `graduated` attribute unless that condition is indeed true.
 
-1. To make the dependencies bidirectional we would define them explicitly:
+1. To make the dependencies bidirectional, we have to define them explicitly:
 
     ```javascript
     db.students.drop()
@@ -114,7 +111,7 @@ indeed true.
 
 ## Schema Dependencies
 
-1. Schema dependencies extend the schema to have additional constraints. Using the *schema dependency* technique, the example from **1.** above can be rewritten as follows:
+1. Schema dependencies work like property dependencies, but instead of just specifying other required properties, they can extend the schema to have other properties. Using the *schema dependency* technique, the example from **1.** above can be rewritten as follows:
 
     ```javascript
     db.students.drop()
@@ -152,7 +149,9 @@ indeed true.
         }
     })
     ```
-1. Run the following commands to test the new JSON schema:
+
+    In the schema above, note that the `mailing_address` property is no longer declared in the top-level `properties` section. Instead, it's declared in the `properties` section of the `graduated` dependency.
+1. To test this new schema, run the following commands to test the updated JSON schema:
 
     ```javascript
     db.students.insertOne({name: "Alena Weber",
