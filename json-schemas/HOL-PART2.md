@@ -53,7 +53,7 @@ Now that you have made yourself more familiar with MongoDB’s JSON Schema suppo
         )
     ```
      In the code above, we added a rule for an additional `f` property at the document root level, with the additional constraint that, if present, it should be of type ‘object’ (i.e. a sub-document, not a single property).
-Let's test the new schema validation rule to make sure it complies with our intent:
+     Let's test the new schema validation rule to make sure it complies with our intent:
 
     ```javascript
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:NumberInt(1)}) //doesn't work because f should be a sub-document
@@ -84,7 +84,7 @@ Let's test the new schema validation rule to make sure it complies with our inte
                           bsonType: ["double", "decimal"],
                           description: "'c' must be a double or a decimal and is required"
                         },
-                        d: 
+                        d:
                         {
                           bsonType: ["int", "double"],
                           pattern: "\d",
@@ -120,7 +120,7 @@ Let's test the new schema validation rule to make sure it complies with our inte
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:{b:"1"}}) // no longer works because f.a is now required
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:{a:NumberInt(1), b:"1"}}) //works because f.a is present but there's no restriction on additional properties
     ```
-1. As you may have noticed, we can additional fields to the `f` sub-document, but we’d like to make sure that only the `a` field be added. In order to do so, let’s restrict the `f` sub-schema to the sole `f.a` property by using the `additionalProperties` attribute:
+1. As you may have noticed, we can add additional fields to the `f` sub-document, but we’d like to make sure that only the `a` field be added. In order to do so, let’s restrict the `f` sub-schema to only the `f.a` property by using the `additionalProperties` attribute:
 
     ```javascript
         db.testCol.drop()
@@ -172,7 +172,7 @@ Let's test the new schema validation rule to make sure it complies with our inte
         }
         )
     ```
-    By setting `additionalProperties` to `false`, we were able to enforce that the `f` sub-document only contains the properties specified in its `properties` section. By specifying these properties as required (using the `required` keyword), we make sure that these properties and __only they__ are always present in new or updated documents (provided the `validationLevel` is set to `strict`, which is the default value).Now the following command no longer works because `f.a` is the only allowed property in the `f` sub-document:
+    By setting `additionalProperties` to `false`, we were able to enforce that the `f` sub-document only contain the properties specified in its `properties` section. By specifying these properties as required (using the `required` keyword), we make sure that these properties and __only they__ are always present in new or updated documents (provided the `validationLevel` is set to `strict`, which is the default value). Now the following command no longer works because `f.a` is the only allowed property in the `f` sub-document:
 
     ```javascript
         db.testCol.insertOne({b:"test",d:9,c:1, e:42, f:{a:NumberInt(1), b:"1"}})
