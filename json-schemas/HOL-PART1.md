@@ -46,7 +46,7 @@
     * `b`, `c` and `d` are required fields
     * `b` must be a string and is required
     * `c` must be a double or a decimal and is required
-    * `d` is a string that matches pattern, or a number in [0, 100[ and is required
+    * `d` is a string that matches pattern, or a number in [0, 100) and is required
 
 1. Enter the following commands to test schema validation:
 

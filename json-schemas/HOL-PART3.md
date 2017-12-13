@@ -61,7 +61,7 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
         )
     ```
 
-2. In our recipe validation rule above we have required each recipe document to have a name and at least one ingredient. We've further defined what an **ingredient** looks like. Let's test our new rules:
+1. In our recipe validation rule above we have required each recipe document to have a name and at least one ingredient. We've further defined what an **ingredient** looks like. Let's test our new rules:
 
     ```javascript
     db.recipes.insertOne({name: "Chocolate Ganache", ingredients: [
@@ -78,7 +78,7 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
 
     ```
 
-3. Next, let's look at the `uniqueItems` keyword. This enforces items in an array to be, well, unique. Imagine if you work for a coloring crayon company which sells boxes of crayons. You want to make sure that each box of crayons includes different colors. How exciting would it be for young Martina to only get a box of *gray* crayons?
+1. Next, let's look at the `uniqueItems` keyword. This enforces items in an array to be, well, unique. Imagine if you work for a coloring crayon company which sells boxes of crayons. You want to make sure that each box of crayons includes different colors. How exciting would it be for young Martina to only get a box of *gray* crayons?
 
     ```javascript
         db.crayonBoxes.drop()
@@ -124,7 +124,7 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
         )
     ```
 
-4. We have set our validation rule here so that each box of crayons cannot contain identical crayons (i.e. of the same size and color).
+1. We have set our validation rule here so that each box of crayons cannot contain identical crayons (i.e. of the same size and color).
 
     ```javascript
         db.crayons.insertOne({name: "Reds",
@@ -134,6 +134,4 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
         crayons: {size: "small", colors: ["red", "maroon", "scarlet", "brick red", "red"]}})  // doesn't work since "red" is repeated
     ```
 
-#### Note:
-`uniqueItems` should be used for scalar arrays and **not** for
-item arrays.
+Note: it is recommended that you use `uniqueItems` used for scalar arrays (as done above with the `colors` array), not for arrays of sub-documents.
