@@ -140,12 +140,12 @@ Our use case here will be the modeling of a cooking recipe. Typically, a recipe 
 1. We have set our validation rule here so that each box of crayons cannot contain identical crayons (i.e. of the same size and color).
 
    ```javascript
-   db.crayons.insertOne({
+   db.crayonBoxes.insertOne({
      name: "Reds",
      crayons: { size: "small", colors: ["red", "maroon"] }
    }); // works
 
-   db.crayons.insertOne({
+   db.crayonBoxes.insertOne({
      name: "Reds",
      crayons: {
        size: "small",
